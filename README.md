@@ -70,8 +70,13 @@ exports.down = function(knex, Promise) {
 > knex seed:make [name of data]
 
 - Go to the seed folder and click on the file that you just created
-- Change all of the 'table_name'
-- Insert seed data in the object
+- Change all of the 'table_name' to the name of your table
+- Insert seed data in the object to match with the columns that you made in the table
+ex :
+knex('todos').insert({id: 1, name: "dummy data1", description: "just add it in"}),
+knex('todos').insert({id: 2, name: "dummy data2", description: "just add it in"}),
+knex('todos').insert({id: 3, name: "dummy data3", description: "just add it in"})
+
 
 > knex seed:run
 > psql [name of database]
@@ -95,7 +100,7 @@ example : DATABASE_URL = postgres://blahblahblah:lfQwRfNea3qGrwOxJTYYtdWGkd@ec2-
 
 > npm install dotenv --save
 
-- Add require('dotenv').config() to the top of the knexfile.js file
+- Add "var dotenv = require('dotenv').config()" to the top of the knexfile.js file
 
 > knex migrate:latest --env production
 > knex seed:run --env production
@@ -105,5 +110,5 @@ example : DATABASE_URL = postgres://blahblahblah:lfQwRfNea3qGrwOxJTYYtdWGkd@ec2-
 
 - from the command line you can check to see if the tables are added to your heroku backend
 > heroku pg:psql
- => \d //
+ => \d 
  => SELECT * from [name of table]
